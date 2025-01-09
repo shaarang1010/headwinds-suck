@@ -3,8 +3,8 @@
     import WorkoutForm from "$lib/containers/forms/workout.svelte";
     import type { PageData } from './$types';
 </script>
-<div class="container mx-auto">
-    <Card class="mx-20">
+<div class="md:container relative">
+    <Card class="md:mx-20">
         <CardHeader>
         <CardTitle>Enter details the for your workout</CardTitle>
         <CardDescription>
