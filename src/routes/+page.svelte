@@ -9,12 +9,17 @@
 		CardTitle
 	} from '$lib/components/ui/card';
 	import WorkoutForm from '$lib/containers/forms/workout.svelte';
+	import SuperDebug, { superForm } from 'sveltekit-superforms';
 	import type { PageData } from './$types';
 	export let pageData: PageData;
 
 	let searchValue = '';
 	let typedValue = '';
+
+	const { form } = superForm(pageData.form);
 </script>
+
+<SuperDebug data={$form} />
 
 <div class="relative md:container">
 	<Card class="md:mx-20">
@@ -23,15 +28,7 @@
 			<CardDescription>This is a description</CardDescription>
 		</CardHeader>
 		<CardContent>
-			<!-- {#if pageData.form !== undefined}
-				<WorkoutForm data={pageData.form}>
-					<Searchbox
-						placeholder="Search by postcode or Suburb"
-						value={searchValue}
-						searchValue={typedValue}
-					/>
-				</WorkoutForm>
-			{/if} -->
+			<WorkoutForm {form} />
 			<ToggleGroup
 				options={[
 					{ label: 'Zone 1', val: 'zone1' },

@@ -4,9 +4,10 @@ import { superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import { formSchema } from '../schema';
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async (event) => {
+	const form = await superValidate(event, zod(formSchema));
 	return {
-		form: await superValidate(zod(formSchema))
+		form
 	};
 };
 

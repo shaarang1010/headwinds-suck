@@ -10,11 +10,7 @@
 	import Toggle from '$lib/components/ui/toggle/toggle.svelte';
 	import ToggleGroup from '$lib/components/custom/toggle-group/toggle-group.svelte';
 
-	export let data: SuperValidated<Infer<FormSchema>>;
-
-	const form = superForm(data, {
-		validators: zodClient(formSchema)
-	});
+	const { form } = $props();
 
 	const { form: formData, enhance } = form;
 
@@ -31,7 +27,6 @@
 	<Form.Field {form} name="suburb">
 		<Form.Control let:attrs>
 			<Form.Label>Suburb</Form.Label>
-			<slot />
 		</Form.Control>
 	</Form.Field>
 	<Form.Field {form} name="zone">
