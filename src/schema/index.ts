@@ -26,5 +26,3 @@ export const formSchema = z.object({
 // .and(DurationSchema);
 
 export type FormSchema = typeof formSchema;
-
-export type WorkoutSchemaType = z.infer<typeof formSchema>;
