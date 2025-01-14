@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input';
@@ -21,9 +21,9 @@
 		{ label: 'Zone 4', val: 'zone4' },
 		{ label: 'Zone 5', val: 'zone5' }
 	];
-</script>
+</script> -->
 
-<form method="POST" use:enhance>
+<!-- <form method="POST" use:enhance>
 	<Form.Field {form} name="suburb">
 		<Form.Control let:attrs>
 			<Form.Label>Suburb</Form.Label>
@@ -36,4 +36,32 @@
 			<Form.Description>Zones are based on your HR and/or FTP</Form.Description>
 		</Form.Control>
 	</Form.Field>
+</form> -->
+
+<script lang="ts">
+	import * as Form from '$lib/components/ui/form';
+	import { Input } from '$lib/components/ui/input';
+	import { formSchema, type FormSchema } from '../../../schema';
+	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
+	import { zodClient } from 'sveltekit-superforms/adapters';
+
+	export let data: SuperValidated<Infer<FormSchema>>;
+
+	const form = superForm(data, {
+		validators: zodClient(formSchema)
+	});
+
+	const { form: formData, enhance } = form;
+</script>
+
+<form method="POST" use:enhance>
+	<Form.Field {form} name="suburb">
+		<Form.Control let:attrs>
+			<Form.Label>Username</Form.Label>
+			<Input {...attrs} bind:value={$formData.suburb} />
+		</Form.Control>
+		<Form.Description>This is your public display name.</Form.Description>
+		<Form.FieldErrors />
+	</Form.Field>
+	<Form.Button>Submit</Form.Button>
 </form>

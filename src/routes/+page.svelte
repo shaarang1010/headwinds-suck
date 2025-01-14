@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import Searchbox from '$lib/components/custom/searchbox/searchbox.svelte';
 	import ToggleGroup from '$lib/components/custom/toggle-group/toggle-group.svelte';
 	import {
@@ -11,6 +11,7 @@
 	import WorkoutForm from '$lib/containers/forms/workout.svelte';
 	import SuperDebug, { superForm } from 'sveltekit-superforms';
 	import type { PageData } from './$types';
+
 	export let pageData: PageData;
 
 	let searchValue = '';
@@ -42,4 +43,12 @@
 		</CardContent>
 	</Card>
 </div>
-null
+null -->
+
+<script lang="ts">
+	import type { PageData } from '../routes/$types';
+	import SettingsForm from '../lib/containers/forms/workout.svelte';
+	export let data: PageData;
+</script>
+
+<SettingsForm data={data.form} />
