@@ -47,8 +47,30 @@ null -->
 
 <script lang="ts">
 	import type { PageData } from '../routes/$types';
-	import SettingsForm from '../lib/containers/forms/workout.svelte';
+
+	import Searchbox from '$lib/components/custom/searchbox/searchbox.svelte';
+	import {
+		Card,
+		CardContent,
+		CardDescription,
+		CardHeader,
+		CardTitle
+	} from '$lib/components/ui/card';
+	import WorkoutForm from '$lib/containers/forms/workout.svelte';
+	import SuperDebug from 'sveltekit-superforms';
+
 	export let data: PageData;
 </script>
 
-<SettingsForm data={data.form} />
+<SuperDebug data={data.form} />
+<div class="relative md:container">
+	<Card class="md:mx-20">
+		<CardHeader>
+			<CardTitle>Enter details the for your workout</CardTitle>
+			<CardDescription>This is a description</CardDescription>
+		</CardHeader>
+		<CardContent>
+			<WorkoutForm data={data.form} />
+		</CardContent>
+	</Card>
+</div>
