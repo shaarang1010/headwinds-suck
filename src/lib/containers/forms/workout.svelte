@@ -35,19 +35,21 @@
 		</Form.Control>
 		<Form.FieldErrors />
 	</Form.Field>
-	<Form.Field {form} name="zone">
-		<Form.Control let:attrs>
-			<Form.Label class="flex flex-row"
-				>Zone
-				<InfoIcon class="ml-2 h-4 w-4 text-gray-500" />
-			</Form.Label>
-			<Form.Description class="text-sm">Zones are based on your HR and/or FTP</Form.Description>
-			<div class="flex-start flex flex-row justify-items-start">
-				<Toggle options={zoneToggleOptions} value="zone2" />
-			</div>
-		</Form.Control>
-	</Form.Field>
-	<div class="flex flex-col items-center">
-		<Form.Button>Get started <ArrowRightCircle class="ml-2 h-4 w-4" /></Form.Button>
+	{#if $formData.stepNumber > 1}
+		<Form.Field {form} name="zone">
+			<Form.Control let:attrs>
+				<Form.Label class="flex flex-row"
+					>Zone
+					<InfoIcon class="ml-2 h-4 w-4 text-gray-500" />
+				</Form.Label>
+				<Form.Description class="text-sm">Zones are based on your HR and/or FTP</Form.Description>
+				<div class="flex-start flex flex-row justify-items-start">
+					<Toggle options={zoneToggleOptions} value="zone2" />
+				</div>
+			</Form.Control>
+		</Form.Field>
+	{/if}
+	<div class="mt-10 flex flex-col items-center">
+		<Form.Button>See results <ArrowRightCircle class="ml-2 h-4 w-4" /></Form.Button>
 	</div>
 </form>
