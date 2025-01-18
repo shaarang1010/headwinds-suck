@@ -47,8 +47,6 @@ null -->
 
 <script lang="ts">
 	import type { PageData } from '../routes/$types';
-
-	import Searchbox from '$lib/components/custom/searchbox/searchbox.svelte';
 	import {
 		Card,
 		CardContent,
@@ -62,12 +60,22 @@ null -->
 	export let data: PageData;
 </script>
 
-<SuperDebug data={data.form} />
+<!-- <SuperDebug data={data.form} /> -->
 <div class="relative md:container">
-	<Card class="md:mx-20">
+	<Card class="md:mx-20 mt-[10%]">
 		<CardHeader>
-			<CardTitle>Enter details the for your workout</CardTitle>
-			<CardDescription>This is a description</CardDescription>
+			<CardTitle>
+				{#if data.form.data.stepNumber === 1}
+				Where is the location of your workout?
+				{:else}
+				Enter details for your workout
+				{/if}
+			</CardTitle>
+			<CardDescription>
+				{#if data.form.data.stepNumber > 1}
+				Complete your session details
+				{/if}
+			</CardDescription>
 		</CardHeader>
 		<CardContent>
 			<WorkoutForm data={data.form} />

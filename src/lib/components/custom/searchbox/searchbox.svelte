@@ -15,7 +15,7 @@
 
     let data: GeoCodingAPIResponse[] = [];
 
-    const handleDebounce = debounce((e) => {searchValue = e.target.value}, 500)
+    const handleDebounce = debounce((e) => {searchValue = e.target.value}, 1000)
     $effect(()=> console.log(searchValue))
 </script>
 

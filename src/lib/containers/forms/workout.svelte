@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input';
-	import { InfoIcon, ArrowRightCircle } from 'lucide-svelte';
+	import { InfoIcon, ArrowRightCircle, ArrowLeftCircle } from 'lucide-svelte';
 	import Toggle from '$lib/components/custom/toggle/toggle.svelte';
 	import { formSchema, type FormSchema } from '../../../schema';
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
@@ -26,15 +26,22 @@
 </script>
 
 <form method="POST" use:enhance class="space-y-4">
+	{#if $formData.stepNumber === 1}
+	<div class="flex flex-col space-y-24">
 	<Form.Field {form} name="suburb">
 		<Form.Control let:attrs>
-			<Form.Label>Search</Form.Label>
+			<!-- <Form.Label>Search</Form.Label> -->
 			<Form.Description>Search by your postcode or suburb</Form.Description>
 			<!-- <Input {...attrs} bind:value={$formData.suburb} /> -->
 			<Searchbox {...attrs} value={$formData.suburb} placeholder="Eg: Kew, 3101" searchValue="" />
 		</Form.Control>
 		<Form.FieldErrors />
 	</Form.Field>
+	<div class="flex flex-row justify-end mr-4">
+		<Form.Button onclick={()=> $formData.stepNumber += 1}> Next <ArrowRightCircle class="ml-2 h-4 w-4"/></Form.Button>
+	</div>
+	</div>
+	{/if}
 	{#if $formData.stepNumber > 1}
 		<Form.Field {form} name="zone">
 			<Form.Control let:attrs>
@@ -48,8 +55,9 @@
 				</div>
 			</Form.Control>
 		</Form.Field>
+		<div class="mt-10 flex flex-row justify-between">
+			<Form.Button onclick={()=> $formData.stepNumber -= 1}><ArrowLeftCircle class="mr-2 h-4 w-4" />Previous </Form.Button>
+			<Form.Button>See results <ArrowRightCircle class="ml-2 h-4 w-4" /></Form.Button>
+		</div>
 	{/if}
-	<div class="mt-10 flex flex-col items-center">
-		<Form.Button>See results <ArrowRightCircle class="ml-2 h-4 w-4" /></Form.Button>
-	</div>
 </form>
